@@ -46,6 +46,7 @@ const syncUserCollectionQuery = [
 	{
 		$project: {
 			name: { $arrayElemAt: ["$userObject.name", 0] },
+			date: { $arrayElemAt: ["$userObject.date", 0] },
 			numberOfOrders: 1
 		}
 	},

@@ -34,7 +34,9 @@ app.get("/", (req, res, next) => {
 		Routes: {
 			"/a": "Ans to A part of the assignment",
 			"/b": "Ans to B part of the assignment",
-			"/reset": "Reset the database to the original state"
+			"/reset": "Reset the database to the original state",
+			"/user": "This is will return the whole User Collection",
+			"/order": "This is will return the whole Order Collection"
 		}
 	});
 });
@@ -63,6 +65,38 @@ app.get("/b", async (req, res, next) => {
 			success: true,
 			message: "Successfully Synchronised User Collection",
 			responeData: UserCollection
+		});
+	} catch (error) {
+		res.locals.statusCode = 500;
+		res.locals.message = "Server Error";
+		next(error);
+	}
+});
+
+app.get("/user", async (req, res, next) => {
+	try {
+		const UserCollection = await UserModel.find().select("-__v");
+
+		res.json({
+			success: true,
+			message: "User Collection",
+			responeData: UserCollection
+		});
+	} catch (error) {
+		res.locals.statusCode = 500;
+		res.locals.message = "Server Error";
+		next(error);
+	}
+});
+
+app.get("/order", async (req, res, next) => {
+	try {
+		const OrderCollection = await OrderModel.find().select("-__v");
+
+		res.json({
+			success: true,
+			message: "Order Collection",
+			responeData: OrderCollection
 		});
 	} catch (error) {
 		res.locals.statusCode = 500;
