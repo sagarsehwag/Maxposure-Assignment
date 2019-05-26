@@ -34,7 +34,7 @@ app.get("/", (req, res, next) => {
 		Routes: {
 			"/a": "Ans to A part of the assignment",
 			"/b": "Ans to B part of the assignment",
-			"/reset": "Reset the database to the original state",
+			"/reset": "Reset the database to its original state",
 			"/user": "This is will return the whole User Collection",
 			"/order": "This is will return the whole Order Collection"
 		}
